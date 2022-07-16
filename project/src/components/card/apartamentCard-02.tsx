@@ -1,14 +1,15 @@
-function ApartamentCard02() {
+function ApartamentCard02(): JSX.Element {
   return (
     <div>
       <article className="cities__card place-card">
         <div className="cities__image-wrapper place-card__image-wrapper">
-          <a href="#">
+          <a href="/#">
             <img
               className="place-card__image"
               src="img/apartment-02.jpg"
               width="260"
               height="200"
+              aria-hidden
               alt="Place image"
             />
           </a>
@@ -36,7 +37,7 @@ function ApartamentCard02() {
             </div>
           </div>
           <h2 className="place-card__name">
-            <a href="#">Canal View Prinsengracht</a>
+            <a href="/#">Canal View Prinsengracht</a>
           </h2>
           <p className="place-card__type">Apartment</p>
         </div>

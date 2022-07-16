@@ -1,3 +1,7 @@
+import { Link } from 'react-router-dom';
+import Logo from '../../components/logo/logo';
+import { AppRoute } from '../../const';
+
 function Favorites() {
   return (
     <body>
@@ -28,22 +32,14 @@ function Favorites() {
           <div className="container">
             <div className="header__wrapper">
               <div className="header__left">
-                <a className="header__logo-link" href="main.html">
-                  <img
-                    className="header__logo"
-                    src="img/logo.svg"
-                    alt="6 cities logo"
-                    width="81"
-                    height="41"
-                  />
-                </a>
+                <Logo />
               </div>
               <nav className="header__nav">
                 <ul className="header__nav-list">
                   <li className="header__nav-item user">
                     <a
                       className="header__nav-link header__nav-link--profile"
-                      href="#"
+                      href="/#"
                     >
                       <div className="header__avatar-wrapper user__avatar-wrapper"></div>
                       <span className="header__user-name user__name">
@@ -53,9 +49,9 @@ function Favorites() {
                     </a>
                   </li>
                   <li className="header__nav-item">
-                    <a className="header__nav-link" href="#">
+                    <Link to={AppRoute.Login} className="header__nav-link">
                       <span className="header__signout">Sign out</span>
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </nav>
@@ -71,7 +67,7 @@ function Favorites() {
                 <li className="favorites__locations-items">
                   <div className="favorites__locations locations locations--current">
                     <div className="locations__item">
-                      <a className="locations__item-link" href="#">
+                      <a className="locations__item-link" href="/#">
                         <span>Amsterdam</span>
                       </a>
                     </div>
@@ -82,12 +78,13 @@ function Favorites() {
                         <span>Premium</span>
                       </div>
                       <div className="favorites__image-wrapper place-card__image-wrapper">
-                        <a href="#">
+                        <a href="/#">
                           <img
                             className="place-card__image"
                             src="img/apartment-small-03.jpg"
                             width="150"
                             height="110"
+                            aria-hidden
                             alt="Place image"
                           />
                         </a>
@@ -123,7 +120,7 @@ function Favorites() {
                           </div>
                         </div>
                         <h2 className="place-card__name">
-                          <a href="#">Nice, cozy, warm big bed apartment</a>
+                          <a href="/#">Nice, cozy, warm big bed apartment</a>
                         </h2>
                         <p className="place-card__type">Apartment</p>
                       </div>
@@ -131,12 +128,13 @@ function Favorites() {
 
                     <article className="favorites__card place-card">
                       <div className="favorites__image-wrapper place-card__image-wrapper">
-                        <a href="#">
+                        <a href="/#">
                           <img
                             className="place-card__image"
                             src="img/room-small.jpg"
                             width="150"
                             height="110"
+                            aria-hidden
                             alt="Place image"
                           />
                         </a>
@@ -172,7 +170,7 @@ function Favorites() {
                           </div>
                         </div>
                         <h2 className="place-card__name">
-                          <a href="#">Wood and stone place</a>
+                          <a href="/#">Wood and stone place</a>
                         </h2>
                         <p className="place-card__type">Private room</p>
                       </div>
@@ -183,7 +181,7 @@ function Favorites() {
                 <li className="favorites__locations-items">
                   <div className="favorites__locations locations locations--current">
                     <div className="locations__item">
-                      <a className="locations__item-link" href="#">
+                      <a className="locations__item-link" href="/#">
                         <span>Cologne</span>
                       </a>
                     </div>
@@ -191,13 +189,14 @@ function Favorites() {
                   <div className="favorites__places">
                     <article className="favorites__card place-card">
                       <div className="favorites__image-wrapper place-card__image-wrapper">
-                        <a href="#">
+                        <a href="/#">
                           <img
                             className="place-card__image"
                             src="img/apartment-small-04.jpg"
                             width="150"
                             height="110"
-                            alt="Place image"
+                            aria-hidden
+                            alt="Place picture"
                           />
                         </a>
                       </div>
@@ -232,7 +231,7 @@ function Favorites() {
                           </div>
                         </div>
                         <h2 className="place-card__name">
-                          <a href="#">White castle</a>
+                          <a href="/#">White castle</a>
                         </h2>
                         <p className="place-card__type">Apartment</p>
                       </div>

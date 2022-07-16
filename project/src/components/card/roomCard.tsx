@@ -1,4 +1,4 @@
-function RoomCard() {
+function RoomCard(): JSX.Element {
   return (
     <div>
       <article className="cities__card place-card">

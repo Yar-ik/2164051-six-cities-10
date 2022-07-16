@@ -1,7 +1,10 @@
+import { Link } from 'react-router-dom';
 import Apartament01 from '../../components/card/apartamentCard-01';
 import Apartament02 from '../../components/card/apartamentCard-02';
 import Apartament03 from '../../components/card/apartamentCard-03';
 import RoomCard from '../../components/card/roomCard';
+import Logo from '../../components/logo/logo';
+import { AppRoute } from '../../const';
 
 type MainProps = {
   rentalOffers: number;
@@ -14,22 +17,14 @@ function Main({ rentalOffers }: MainProps): JSX.Element {
         <div className="container">
           <div className="header__wrapper">
             <div className="header__left">
-              <a className="header__logo-link header__logo-link--active">
-                <img
-                  className="header__logo"
-                  src="img/logo.svg"
-                  alt="6 cities logo"
-                  width="81"
-                  height="41"
-                />
-              </a>
+              <Logo />
             </div>
             <nav className="header__nav">
               <ul className="header__nav-list">
                 <li className="header__nav-item user">
                   <a
                     className="header__nav-link header__nav-link--profile"
-                    href="#"
+                    href="/#"
                   >
                     <div className="header__avatar-wrapper user__avatar-wrapper"></div>
                     <span className="header__user-name user__name">
@@ -39,9 +34,9 @@ function Main({ rentalOffers }: MainProps): JSX.Element {
                   </a>
                 </li>
                 <li className="header__nav-item">
-                  <a className="header__nav-link" href="#">
+                  <Link to={AppRoute.Login} className="header__nav-link">
                     <span className="header__signout">Sign out</span>
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </nav>
@@ -55,32 +50,35 @@ function Main({ rentalOffers }: MainProps): JSX.Element {
           <section className="locations container">
             <ul className="locations__list tabs__list">
               <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
+                <a className="locations__item-link tabs__item" href="/#">
                   <span>Paris</span>
                 </a>
               </li>
               <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
+                <a className="locations__item-link tabs__item" href="/#">
                   <span>Cologne</span>
                 </a>
               </li>
               <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
+                <a className="locations__item-link tabs__item" href="/#">
                   <span>Brussels</span>
                 </a>
               </li>
               <li className="locations__item">
-                <a className="locations__item-link tabs__item tabs__item--active">
+                <a
+                  className="locations__item-link tabs__item tabs__item--active"
+                  href="/#"
+                >
                   <span>Amsterdam</span>
                 </a>
               </li>
               <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
+                <a className="locations__item-link tabs__item" href="/#">
                   <span>Hamburg</span>
                 </a>
               </li>
               <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
+                <a className="locations__item-link tabs__item" href="/#">
                   <span>Dusseldorf</span>
                 </a>
               </li>
