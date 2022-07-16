@@ -47,4 +47,3 @@ function RoomCard() {
 }
 
 export default RoomCard;
-//
