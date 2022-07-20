@@ -1,4 +1,4 @@
-function ApartamentCard02(): JSX.Element {
+function ApartamentCard02() {
   return (
     <div>
       <article className="cities__card place-card">
@@ -10,7 +10,7 @@ function ApartamentCard02(): JSX.Element {
               width="260"
               height="200"
               aria-hidden
-              alt="Place image"
+              alt=""
             />
           </a>
         </div>
