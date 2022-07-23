@@ -6,7 +6,7 @@ function ApartamentCard03(): JSX.Element {
           <span>Premium</span>
         </div>
         <div className="cities__image-wrapper place-card__image-wrapper">
-          <a href="/#">
+          <a href="#todo">
             <img
               className="place-card__image"
               src="img/apartment-03.jpg"
@@ -40,7 +40,7 @@ function ApartamentCard03(): JSX.Element {
             </div>
           </div>
           <h2 className="place-card__name">
-            <a href="/#">Nice, cozy, warm big bed apartment</a>
+            <a href="#todo">Nice, cozy, warm big bed apartment</a>
           </h2>
           <p className="place-card__type">Apartment</p>
         </div>
