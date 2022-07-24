@@ -1,4 +1,4 @@
-function ApartamentCard01() {
+function ApartamentCard01(): JSX.Element {
   return (
     <div>
       <article className="cities__card place-card">
@@ -6,12 +6,13 @@ function ApartamentCard01() {
           <span>Premium</span>
         </div>
         <div className="cities__image-wrapper place-card__image-wrapper">
-          <a href="#">
+          <a href="#todo">
             <img
               className="place-card__image"
               src="img/apartment-01.jpg"
               width="260"
               height="200"
+              aria-hidden
               alt="Place image"
             />
           </a>
@@ -39,7 +40,7 @@ function ApartamentCard01() {
             </div>
           </div>
           <h2 className="place-card__name">
-            <a href="#">
+            <a href="#todo">
               Beautiful &amp; luxurious apartment at great location
             </a>
           </h2>
