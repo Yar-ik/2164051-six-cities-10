@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
 import Logo from '../../components/logo/logo';
 import { AppRoute } from '../../const';
+// import CommentSubmissionForm from './../../components/сomment-submission-form';
 
 function Room() {
   return (
     <body>
-      <div style={{ display: 'none' }}>
+      {/* <div style={{ display: 'none' }}>
         <svg xmlns="http://www.w3.org/2000/svg">
           <symbol id="icon-arrow-select" viewBox="0 0 7 4">
             <path
@@ -25,7 +26,7 @@ function Room() {
             />
           </symbol>
         </svg>
-      </div>
+      </div> */}
 
       <div className="page">
         <header className="header">
@@ -39,7 +40,7 @@ function Room() {
                   <li className="header__nav-item user">
                     <a
                       className="header__nav-link header__nav-link--profile"
-                      href="/#"
+                      href="#todo"
                     >
                       <div className="header__avatar-wrapper user__avatar-wrapper"></div>
                       <span className="header__user-name user__name">
@@ -240,7 +241,8 @@ function Room() {
                       </div>
                     </li>
                   </ul>
-                  <form className="reviews__form form" action="#" method="post">
+                  {/* <CommentSubmissionForm /> */}
+                  {/* <form className="reviews__form form" action="#" method="post">
                     <label
                       className="reviews__label form__label"
                       htmlFor="review"
@@ -374,7 +376,7 @@ function Room() {
                         Submit
                       </button>
                     </div>
-                  </form>
+                  </form> */}
                 </section>
               </div>
             </div>
@@ -388,7 +390,7 @@ function Room() {
               <div className="near-places__list places__list">
                 <article className="near-places__card place-card">
                   <div className="near-places__image-wrapper place-card__image-wrapper">
-                    <a href="/#">
+                    <a href="#todo">
                       <img
                         className="place-card__image"
                         src="img/room.jpg"
@@ -428,7 +430,7 @@ function Room() {
                       </div>
                     </div>
                     <h2 className="place-card__name">
-                      <a href="/#">Wood and stone place</a>
+                      <a href="#todo">Wood and stone place</a>
                     </h2>
                     <p className="place-card__type">Private room</p>
                   </div>
@@ -467,7 +469,7 @@ function Room() {
                       </div>
                     </div>
                     <h2 className="place-card__name">
-                      <a href="/#">Canal View Prinsengracht</a>
+                      <a href="#todo">Canal View Prinsengracht</a>
                     </h2>
                     <p className="place-card__type">Apartment</p>
                   </div>
@@ -478,7 +480,7 @@ function Room() {
                     <span>Premium</span>
                   </div>
                   <div className="near-places__image-wrapper place-card__image-wrapper">
-                    <a href="/#">
+                    <a href="#todo">
                       <img
                         className="place-card__image"
                         src="img/apartment-03.jpg"
@@ -518,7 +520,7 @@ function Room() {
                       </div>
                     </div>
                     <h2 className="place-card__name">
-                      <a href="/#">Nice, cozy, warm big bed apartment</a>
+                      <a href="#todo">Nice, cozy, warm big bed apartment</a>
                     </h2>
                     <p className="place-card__type">Apartment</p>
                   </div>

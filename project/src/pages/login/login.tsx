@@ -3,7 +3,7 @@ import Logo from '../../components/logo/logo';
 function Login() {
   return (
     <body>
-      <div style={{ display: 'none' }}>
+      {/* <div style={{ display: 'none' }}>
         <svg xmlns="http://www.w3.org/2000/svg">
           <symbol id="icon-arrow-select" viewBox="0 0 7 4">
             <path
@@ -23,7 +23,7 @@ function Login() {
             />
           </symbol>
         </svg>
-      </div>
+      </div> */}
 
       <div className="page page--gray page--login">
         <header className="header">
@@ -71,7 +71,7 @@ function Login() {
             </section>
             <section className="locations locations--login locations--current">
               <div className="locations__item">
-                <a className="locations__item-link" href="/#">
+                <a className="locations__item-link" href="#todo">
                   <span>Amsterdam</span>
                 </a>
               </div>
