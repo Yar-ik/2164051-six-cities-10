@@ -1,6 +1,6 @@
-import { Offer } from '../types';
+import { FavoritOffer } from '../types';
 
-export const offers: Offer[] = [
+export const favoritOffers: FavoritOffer[] = [
   {
     bedrooms: 1,
     city: {
@@ -51,7 +51,7 @@ export const offers: Offer[] = [
     goods: ['Heating'],
     host: {
       avatarUrl: 'img/2.png',
-      id: 2,
+      id: 3,
       isPro: true,
       name: 'Angelina',
     },
@@ -120,13 +120,13 @@ export const offers: Offer[] = [
       'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     goods: ['Heating'],
     host: {
-      avatarUrl: 'img/4.png',
+      avatarUrl: 'img/1.png',
       id: 4,
       isPro: true,
       name: 'Angelina',
     },
     id: 4,
-    images: ['img/4.png'],
+    images: ['img/1.png'],
     isFavorite: true,
     isPremium: false,
     location: {
