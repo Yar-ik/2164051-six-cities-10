@@ -1,4 +1,6 @@
+import { useState } from 'react';
 function CommentForm(): JSX.Element {
+  const [value, setValue] = useState('Тестовый текст');
   return (
     <form className="reviews__form form" action="#" method="post">
       <label className="reviews__label form__label" htmlFor="review">
@@ -92,6 +94,8 @@ function CommentForm(): JSX.Element {
       </div>
       <textarea
         className="reviews__textarea form__textarea"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
         id="review"
         name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
@@ -105,7 +109,10 @@ function CommentForm(): JSX.Element {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled
+          onClick={(e) => {
+            e.preventDefault();
+          }}
+          // disabled
         >
           Submit
         </button>

@@ -1,10 +1,13 @@
 import { Offer } from '../../types';
+import { useNavigate } from 'react-router-dom';
+import { AppRoute } from '../../const';
 
 type Props = {
   offer: Offer;
 };
 
 function OfferCard({ offer }: Props): JSX.Element {
+  const navigate = useNavigate();
   return (
     <div>
       <article className="cities__card place-card">
@@ -42,7 +45,15 @@ function OfferCard({ offer }: Props): JSX.Element {
             </div>
           </div>
           <h2 className="place-card__name">
-            <a href="#todo">{offer.title}</a>
+            <a
+              href="#todo"
+              onClick={(e) => {
+                e.preventDefault();
+                navigate(AppRoute.Room);
+              }}
+            >
+              {offer.title}
+            </a>
           </h2>
           <p className="place-card__type">{offer.type}</p>
         </div>
