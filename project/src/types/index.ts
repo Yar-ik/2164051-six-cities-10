@@ -33,7 +33,7 @@ export type Offer = {
   type: string;
 };
 
-export type FavoritOffer = {
+export type FavoriteOffer = {
   bedrooms: number;
   city: {
     location: {

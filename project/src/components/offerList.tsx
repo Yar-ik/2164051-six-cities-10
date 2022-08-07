@@ -7,12 +7,14 @@ type Props = {
 };
 
 function OfferList({ offers }: Props) {
-  const [userOffers, setUserOffers] = useState('');
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [activeCard, setActiveCard] = useState('');
   return (
     <>
       {offers.map((offer) => (
         <div
-          onMouseOver={() => setUserOffers(offer.id.toString())}
+          onMouseOver={() => setActiveCard(offer.id.toString())}
+          onMouseLeave={() => setActiveCard('')}
           key={offer.id}
         >
           <OfferCard offer={offer} />

@@ -5,20 +5,20 @@ import Favorites from '../../pages/favorites/favorites';
 import Login from '../../pages/login/login';
 import Main from '../../pages/main/main';
 import Room from '../../pages/room/room';
-import { CommentsList, FavoritOffer, Offer } from '../../types';
+import { CommentsList, FavoriteOffer, Offer } from '../../types';
 import PrivateRoute from '../private-route/private-route';
 
 type AppMainProps = {
   rentalOffers: number;
   offers: Offer[];
-  favoritOffers: FavoritOffer[];
+  favoriteOffers: FavoriteOffer[];
   commentsList: CommentsList[];
 };
 
 function App({
   rentalOffers,
   offers,
-  favoritOffers,
+  favoriteOffers,
   commentsList,
 }: AppMainProps): JSX.Element {
   return (
@@ -35,7 +35,7 @@ function App({
           element={
             <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
               {/* NoAuth вместо Auth */}
-              <Favorites favoritOffers={favoritOffers} />
+              <Favorites favoriteOffers={favoriteOffers} />
             </PrivateRoute>
           }
         />

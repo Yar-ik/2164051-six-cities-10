@@ -112,7 +112,7 @@ function CommentForm(): JSX.Element {
           onClick={(e) => {
             e.preventDefault();
           }}
-          // disabled
+          disabled
         >
           Submit
         </button>

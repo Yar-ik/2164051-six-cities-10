@@ -1,6 +1,5 @@
 import { Offer } from '../../types';
 import { useNavigate } from 'react-router-dom';
-import { AppRoute } from '../../const';
 
 type Props = {
   offer: Offer;
@@ -46,10 +45,10 @@ function OfferCard({ offer }: Props): JSX.Element {
           </div>
           <h2 className="place-card__name">
             <a
-              href="#todo"
+              href={`/offer/${offer.id}`}
               onClick={(e) => {
                 e.preventDefault();
-                navigate(AppRoute.Room);
+                navigate(`/offer/${offer.id}`);
               }}
             >
               {offer.title}

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
 import { offers } from './mocks/offers';
-import { favoritOffers } from './mocks/favoritOffers';
+import { favoriteOffers } from './mocks/favoriteOffers';
 import { commentsList } from './mocks/commentsList';
 
 const Setting = {
@@ -18,7 +18,7 @@ root.render(
     <App
       rentalOffers={Setting.RENTAL_OFFERS}
       offers={offers}
-      favoritOffers={favoritOffers}
+      favoriteOffers={favoriteOffers}
       commentsList={commentsList}
     />
   </React.StrictMode>
