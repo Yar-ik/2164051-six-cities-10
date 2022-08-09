@@ -99,6 +99,7 @@ function Main({ rentalOffers, offers }: MainProps): JSX.Element {
               </div>
             </section>
             <div className="cities__right-section"></div>
+            <div id="map"></div>
           </div>
         </div>
       </main>
