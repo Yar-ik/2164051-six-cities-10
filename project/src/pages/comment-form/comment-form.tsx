@@ -111,8 +111,9 @@ function CommentForm(): JSX.Element {
           type="submit"
           onClick={(e) => {
             e.preventDefault();
+            setValue('');
           }}
-          disabled
+          // disabled
         >
           Submit
         </button>
