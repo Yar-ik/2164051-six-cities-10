@@ -4,6 +4,7 @@ import Logo from '../../components/logo/logo';
 import OfferList from '../../components/offerList';
 import { AppRoute } from '../../const';
 import { Offer } from '../../types';
+import Map from './../../components/map/map';
 
 type MainProps = {
   rentalOffers: number;
@@ -11,6 +12,10 @@ type MainProps = {
 };
 
 function Main({ rentalOffers, offers }: MainProps): JSX.Element {
+  const points = offers.map((item) => ({
+    ...item.location,
+  }));
+
   return (
     <>
       <header className="header">
@@ -99,7 +104,9 @@ function Main({ rentalOffers, offers }: MainProps): JSX.Element {
               </div>
             </section>
             <div className="cities__right-section"></div>
-            <div id="map"></div>
+            <section className="map">
+              <Map points={points} />
+            </section>
           </div>
         </div>
       </main>
