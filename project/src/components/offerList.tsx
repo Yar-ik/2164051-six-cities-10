@@ -4,6 +4,7 @@ import OfferCard from './card/offerCard';
 
 type Props = {
   offers: Offer[];
+  // onListItemHover: (listItemName: string) => void;
 };
 
 function OfferList({ offers }: Props) {
