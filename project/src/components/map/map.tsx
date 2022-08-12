@@ -57,6 +57,6 @@ const Map = ({ points }: Props): JSX.Element => {
     }
   }, [map, points]);
 
-  return <div className="cities__map" ref={mapRef}></div>;
+  return <div style={{ height: '100vh' }} ref={mapRef}></div>;
 };
-export default React.memo(Map);
+export default Map;

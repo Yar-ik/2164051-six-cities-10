@@ -12,6 +12,16 @@ type MainProps = {
 };
 
 function Main({ rentalOffers, offers }: MainProps): JSX.Element {
+  // const [selectedPoint, setSelectedPoint] = useState<Point | undefined>(
+  //   undefined
+  // );
+
+  // const onListItemHover = (listItemName: string) => {
+  //   const currentPoint = points.find((point) => point.title === listItemName);
+
+  //   setSelectedPoint(currentPoint);
+  // };
+
   const points = offers.map((item) => ({
     ...item.location,
   }));
@@ -100,13 +110,17 @@ function Main({ rentalOffers, offers }: MainProps): JSX.Element {
 
               <DropDown />
               <div className="cities__places-list places__list tabs__content">
-                <OfferList offers={offers} />
+                <OfferList
+                  offers={offers}
+                  //  onListItemHover={onListItemHover}
+                />
               </div>
             </section>
-            <div className="cities__right-section"></div>
-            <section className="map">
-              <Map points={points} />
-            </section>
+            <div className="cities__right-section">
+              <section className="cities__map map">
+                <Map points={points} />
+              </section>
+            </div>
           </div>
         </div>
       </main>
