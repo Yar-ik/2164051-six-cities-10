@@ -80,3 +80,10 @@ export type CommentsList = {
     name: string;
   };
 };
+
+export type Point = {
+  latitude: number;
+  longitude: number;
+  zoom: number;
+  title: string;
+};
