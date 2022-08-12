@@ -4,6 +4,7 @@ import 'leaflet/dist/leaflet.css';
 
 import useMap from './../../hooks/useMap';
 import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../../const';
+import { Point } from '../../types';
 
 const CITY = {
   lat: 52.370216,
@@ -24,17 +25,12 @@ const defaultCustomIcon = leaflet.icon({
   iconAnchor: [20, 40],
 });
 
-type Point = {
-  latitude: number;
-  longitude: number;
-  zoom: number;
-};
-
 type Props = {
   points: Point[];
+  selectedPoint: Point | undefined;
 };
 
-const Map = ({ points }: Props): JSX.Element => {
+const Map = ({ points, selectedPoint }: Props): JSX.Element => {
   const mapRef = useRef(null);
 
   const map = useMap(mapRef, CITY);
@@ -49,14 +45,17 @@ const Map = ({ points }: Props): JSX.Element => {
               lng: point.longitude,
             },
             {
-              icon: defaultCustomIcon,
+              icon:
+                point.title === selectedPoint?.title
+                  ? currentCustomIcon
+                  : defaultCustomIcon,
             }
           )
           .addTo(map);
       });
     }
-  }, [map, points]);
+  }, [map, points, selectedPoint]);
 
-  return <div style={{ height: '100vh' }} ref={mapRef}></div>;
+  return <div style={{ height: '100%' }} ref={mapRef}></div>;
 };
 export default Map;

@@ -1,9 +1,10 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import DropDown from '../../components/drop-down-form/drop-down-form';
 import Logo from '../../components/logo/logo';
 import OfferList from '../../components/offerList';
 import { AppRoute } from '../../const';
-import { Offer } from '../../types';
+import { Offer, Point } from '../../types';
 import Map from './../../components/map/map';
 
 type MainProps = {
@@ -12,19 +13,20 @@ type MainProps = {
 };
 
 function Main({ rentalOffers, offers }: MainProps): JSX.Element {
-  // const [selectedPoint, setSelectedPoint] = useState<Point | undefined>(
-  //   undefined
-  // );
-
-  // const onListItemHover = (listItemName: string) => {
-  //   const currentPoint = points.find((point) => point.title === listItemName);
-
-  //   setSelectedPoint(currentPoint);
-  // };
+  const [selectedPoint, setSelectedPoint] = useState<Point | undefined>(
+    undefined
+  );
 
   const points = offers.map((item) => ({
     ...item.location,
+    title: item.title,
   }));
+
+  const onListItemHover = (listItemName: string) => {
+    const currentPoint = points.find((offer) => offer.title === listItemName);
+
+    setSelectedPoint(currentPoint);
+  };
 
   return (
     <>
@@ -110,15 +112,12 @@ function Main({ rentalOffers, offers }: MainProps): JSX.Element {
 
               <DropDown />
               <div className="cities__places-list places__list tabs__content">
-                <OfferList
-                  offers={offers}
-                  //  onListItemHover={onListItemHover}
-                />
+                <OfferList offers={offers} onListItemHover={onListItemHover} />
               </div>
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map points={points} />
+                <Map points={points} selectedPoint={selectedPoint} />
               </section>
             </div>
           </div>
