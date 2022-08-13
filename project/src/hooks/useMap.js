@@ -6,8 +6,6 @@ function useMap(mapRef, city) {
 
   useEffect(() => {
     if (mapRef.current !== null && map === null) {
-      // eslint-disable-next-line no-console
-      console.log(mapRef.current, map);
       const instance = leaflet.map(mapRef.current, {
         center: {
           lat: city.lat,

@@ -21,7 +21,6 @@ function App({
   favoriteOffers,
   commentsList,
 }: AppMainProps): JSX.Element {
-  console.count('app');
   return (
     <BrowserRouter>
       <Routes>
