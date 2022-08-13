@@ -35,7 +35,7 @@ function ApartamentCard01(): JSX.Element {
           </div>
           <div className="place-card__rating rating">
             <div className="place-card__stars rating__stars">
-              <span className="width: 80%"></span>
+              <span style={{ width: '80%' }}></span>
               <span className="visually-hidden">Rating</span>
             </div>
           </div>

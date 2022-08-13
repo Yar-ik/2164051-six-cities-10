@@ -1,4 +1,12 @@
-function RoomCard(): JSX.Element {
+import { Offer } from '../../types';
+import { useNavigate } from 'react-router-dom';
+
+type Props = {
+  offer: Offer;
+};
+
+function OfferCard({ offer }: Props): JSX.Element {
+  const navigate = useNavigate();
   return (
     <div>
       <article className="cities__card place-card">
@@ -6,18 +14,17 @@ function RoomCard(): JSX.Element {
           <a href="#todo">
             <img
               className="place-card__image"
-              src="img/room.jpg"
+              src={offer.previewImage}
               width="260"
               height="200"
-              aria-hidden
-              alt="Place image"
+              alt={offer.city.name}
             />
           </a>
         </div>
         <div className="place-card__info">
           <div className="place-card__price-wrapper">
             <div className="place-card__price">
-              <b className="place-card__price-value">&euro;80</b>
+              <b className="place-card__price-value">&euro;{offer.price}</b>
               <span className="place-card__price-text">&#47;&nbsp;night</span>
             </div>
             <button
@@ -32,18 +39,26 @@ function RoomCard(): JSX.Element {
           </div>
           <div className="place-card__rating rating">
             <div className="place-card__stars rating__stars">
-              <span className="width: 80%"></span>
-              <span className="visually-hidden">Rating</span>
+              <span style={{ width: '80%' }}></span>
+              <span className="visually-hidden">{offer.rating}</span>
             </div>
           </div>
           <h2 className="place-card__name">
-            <a href="#todo">Wood and stone place</a>
+            <a
+              href={`/offer/${offer.id}`}
+              onClick={(e) => {
+                e.preventDefault();
+                navigate(`/offer/${offer.id}`);
+              }}
+            >
+              {offer.title}
+            </a>
           </h2>
-          <p className="place-card__type">Private room</p>
+          <p className="place-card__type">{offer.type}</p>
         </div>
       </article>
     </div>
   );
 }
 
-export default RoomCard;
+export default OfferCard;
