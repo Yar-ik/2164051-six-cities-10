@@ -7,12 +7,16 @@ type Props = {
 };
 
 function OfferList({ offers, onListItemHover }: Props) {
+  const handleListItemHover = (title: string) => {
+    onListItemHover(title);
+  };
+
   return (
     <>
       {offers.map((offer) => (
         <div
-          onMouseOver={() => onListItemHover(offer.title)}
-          onMouseLeave={() => onListItemHover('')}
+          onMouseOver={() => handleListItemHover(offer.title)}
+          onMouseLeave={() => handleListItemHover('')}
           key={offer.id}
         >
           <OfferCard offer={offer} />
