@@ -14,12 +14,10 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  <React.StrictMode>
-    <App
-      rentalOffers={Setting.RENTAL_OFFERS}
-      offers={offers}
-      favoriteOffers={favoriteOffers}
-      commentsList={commentsList}
-    />
-  </React.StrictMode>
+  <App
+    rentalOffers={Setting.RENTAL_OFFERS}
+    offers={offers}
+    favoriteOffers={favoriteOffers}
+    commentsList={commentsList}
+  />
 );

@@ -1,20 +1,22 @@
-import { useState } from 'react';
 import { Offer } from '../types';
 import OfferCard from './card/offerCard';
 
 type Props = {
   offers: Offer[];
+  onListItemHover: (listItemName: string) => void;
 };
 
-function OfferList({ offers }: Props) {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [activeCard, setActiveCard] = useState('');
+function OfferList({ offers, onListItemHover }: Props) {
+  const handleListItemHover = (title: string) => {
+    onListItemHover(title);
+  };
+
   return (
     <>
       {offers.map((offer) => (
         <div
-          onMouseOver={() => setActiveCard(offer.id.toString())}
-          onMouseLeave={() => setActiveCard('')}
+          onMouseOver={() => handleListItemHover(offer.title)}
+          onMouseLeave={() => handleListItemHover('')}
           key={offer.id}
         >
           <OfferCard offer={offer} />
