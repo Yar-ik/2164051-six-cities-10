@@ -4,6 +4,8 @@ import App from './components/app/app';
 import { offers } from './mocks/offers';
 import { favoriteOffers } from './mocks/favoriteOffers';
 import { commentsList } from './mocks/commentsList';
+import { Provider } from 'react-redux';
+import { store } from './store/index';
 
 const Setting = {
   RENTAL_OFFERS: 312,
@@ -14,10 +16,12 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  <App
-    rentalOffers={Setting.RENTAL_OFFERS}
-    offers={offers}
-    favoriteOffers={favoriteOffers}
-    commentsList={commentsList}
-  />
+  <Provider store={store}>
+    <App
+      rentalOffers={Setting.RENTAL_OFFERS}
+      offers={offers}
+      favoriteOffers={favoriteOffers}
+      commentsList={commentsList}
+    />
+  </Provider>
 );
