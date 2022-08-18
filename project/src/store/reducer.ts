@@ -20,41 +20,12 @@ const sixCitiesReducer = (state = initialState, action: Action) => {
   }
 };
 
-// const couterSlice = createSlice({
-//   name: 'counter',
-//   initialState: {
-//     value: 0,
-//   },
-
-//   reducers: {
-//     incremented: (state) => {
-//       state.value += 1;
-//     },
-
-//     decremented: (state) => {
-//       state.value -= 1;
-//     },
-//   },
-// });
-
-// export const { incremented, decremented } = couterSlice.actions;
-
-// const store = configureStore({
-//   reducer: couterSlice.reducer,
-// });
-
-// store.subscribe(() => console.log(store.getState()));
-
-// store.dispatch(incremented());
-
-// store.dispatch(incremented());
-
-// store.dispatch(decremented());
-
 // const reducer = createReducer(initialState, (builder) => {
-//   builder.addCase(incrementOfferList, (state) => {
-//     state.step = state.step + STEP_COUNT;
-//   });
+//   builder.addCase(setCity, (state) => {
+//     Должно меняться состояние ;
+//   })
+//  .addCase(setOfferList, (state) => {
+// Должно меняться состояние ;
+// })
 // });
-
 export { sixCitiesReducer };

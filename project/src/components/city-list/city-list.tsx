@@ -16,7 +16,7 @@ function CityList({ cities }: Props) {
   // Функция обработчик(клик по ссылке)
   const handleClick = (e: React.MouseEvent<HTMLElement>, city: string) => {
     // eslint-disable-next-line no-console
-    console.log(city);
+    // console.log(city);
 
     e.preventDefault();
 
