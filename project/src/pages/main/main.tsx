@@ -86,9 +86,7 @@ function Main(): JSX.Element {
               <OfferList offers={offerList} onListItemHover={onListItemHover} />
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map">
-                <Map points={points} selectedPoint={selectedPoint} />
-              </section>
+              <Map points={points} selectedPoint={selectedPoint} />
             </div>
           </div>
         </div>
