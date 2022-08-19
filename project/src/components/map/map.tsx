@@ -12,7 +12,6 @@ const CITY = {
   zoom: 10,
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const currentCustomIcon = leaflet.icon({
   iconUrl: URL_MARKER_CURRENT,
   iconSize: [40, 40],
@@ -56,8 +55,6 @@ const Map = ({ points, selectedPoint }: Props): JSX.Element => {
     }
   }, [map, points, selectedPoint]);
 
-  return (
-    <section className="cities__map map" ref={mapRef}></section>
-  );
+  return <section className="cities__map map" ref={mapRef}></section>;
 };
 export default Map;

@@ -20,12 +20,4 @@ const sixCitiesReducer = (state = initialState, action: Action) => {
   }
 };
 
-// const reducer = createReducer(initialState, (builder) => {
-//   builder.addCase(setCity, (state) => {
-//     Должно меняться состояние ;
-//   })
-//  .addCase(setOfferList, (state) => {
-// Должно меняться состояние ;
-// })
-// });
 export { sixCitiesReducer };
