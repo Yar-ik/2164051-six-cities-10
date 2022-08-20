@@ -5,29 +5,19 @@ import Favorites from '../../pages/favorites/favorites';
 import Login from '../../pages/login/login';
 import Main from '../../pages/main/main';
 import Room from '../../pages/room/room';
-import { CommentsList, FavoriteOffer, Offer } from '../../types';
+import { CommentsList, FavoriteOffer } from '../../types';
 import PrivateRoute from '../private-route/private-route';
 
 type AppMainProps = {
-  rentalOffers: number;
-  offers: Offer[];
   favoriteOffers: FavoriteOffer[];
   commentsList: CommentsList[];
 };
 
-function App({
-  rentalOffers,
-  offers,
-  favoriteOffers,
-  commentsList,
-}: AppMainProps): JSX.Element {
+function App({ favoriteOffers, commentsList }: AppMainProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path={AppRoute.Main}
-          element={<Main rentalOffers={rentalOffers} offers={offers} />}
-        />
+        <Route path={AppRoute.Main} element={<Main />} />
         <Route path={AppRoute.Login} element={<Login />} />
 
         <Route

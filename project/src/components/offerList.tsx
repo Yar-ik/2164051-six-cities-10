@@ -12,7 +12,7 @@ function OfferList({ offers, onListItemHover }: Props) {
   };
 
   return (
-    <>
+    <div className="cities__places-list places__list tabs__content">
       {offers.map((offer) => (
         <div
           onMouseOver={() => handleListItemHover(offer.title)}
@@ -22,7 +22,7 @@ function OfferList({ offers, onListItemHover }: Props) {
           <OfferCard offer={offer} />
         </div>
       ))}
-    </>
+    </div>
   );
 }
 export default OfferList;
