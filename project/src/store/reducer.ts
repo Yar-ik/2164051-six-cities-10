@@ -9,7 +9,7 @@ type InitialState = {
   authorizationStatus: AuthorizationStatus;
 };
 
-const initialState = {
+const initialState: InitialState = {
   city: 'Paris',
   offerList: [],
   authorizationStatus: AuthorizationStatus.Unknown,
