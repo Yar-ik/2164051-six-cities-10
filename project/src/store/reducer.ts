@@ -1,6 +1,13 @@
 // import { createSlice, configureStore } from '@reduxjs/toolkit';
 import { AuthorizationStatus } from '../const';
 import { Action, requireAuthorization, setCity, setOfferList } from './action';
+import { Offer } from '../types';
+
+type InitialState = {
+  city: string;
+  offerList: Offer;
+  authorizationStatus: AuthorizationStatus;
+};
 
 const initialState = {
   city: 'Paris',
