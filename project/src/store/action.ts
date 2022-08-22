@@ -1,4 +1,5 @@
 import { createAction } from '@reduxjs/toolkit';
+import { AuthorizationStatus } from '../const';
 import { Offer } from '../types';
 
 type ActionName = 'city/setOfferList' | 'city/setCity';
@@ -9,6 +10,9 @@ export interface Action {
 }
 
 export const setOfferList = createAction<Offer[]>('city/setOfferList');
+
 export const setCity = createAction<string>('city/setCity');
 
-// Дженерик для setCity  <string>
+export const requireAuthorization = createAction<AuthorizationStatus>(
+  'user/requireAuthorization'
+);

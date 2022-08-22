@@ -1,7 +1,12 @@
 // import { createSlice, configureStore } from '@reduxjs/toolkit';
-import { Action, setCity, setOfferList } from './action';
+import { AuthorizationStatus } from '../const';
+import { Action, requireAuthorization, setCity, setOfferList } from './action';
 
-const initialState = { city: 'Paris', offerList: [] };
+const initialState = {
+  city: 'Paris',
+  offerList: [],
+  authorizationStatus: AuthorizationStatus.Unknown,
+};
 
 const sixCitiesReducer = (state = initialState, action: Action) => {
   switch (action.type) {
@@ -10,10 +15,17 @@ const sixCitiesReducer = (state = initialState, action: Action) => {
         ...state,
         offerList: action.payload,
       };
+
     case setCity.toString():
       return {
         ...state,
         city: action.payload,
+      };
+
+    case requireAuthorization.toString():
+      return {
+        ...state,
+        user: action.payload,
       };
     default:
       return state;
