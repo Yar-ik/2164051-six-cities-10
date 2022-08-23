@@ -2,7 +2,7 @@
 import { AuthorizationStatus } from '../const';
 import { Action, requireAuthorization, setCity, setOfferList } from './action';
 import { Offer } from '../types';
-import OfferList from './../components/offerList';
+// import OfferList from './../components/offerList';
 
 type InitialState = {
   city: string;
