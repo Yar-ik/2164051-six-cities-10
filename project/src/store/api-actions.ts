@@ -4,10 +4,11 @@ import { State } from '../types/state';
 import { AxiosInstance } from 'axios';
 import { Offer } from '../types';
 import { requireAuthorization, setOfferList, setError } from './action';
-import { APIRoute, AuthorizationStatus } from '../const';
+import { APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../const';
 import { dropToken, saveToken } from '../services/token';
 import { UserData } from '../types/user-data';
 import { AuthData } from '../types/auth-data';
+import { store } from './index';
 
 export const clearErrorAction = createAsyncThunk('game/clearError', () => {
   setTimeout(() => store.dispatch(setError(null)), TIMEOUT_SHOW_ERROR);

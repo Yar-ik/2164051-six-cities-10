@@ -1,6 +1,13 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { getToken } from './token';
 
+
+const StatusCodeMapping: Record<number, boolean> = {
+  [StatusCodes]
+}
+
+
+
 const BACKEND_URL = 'https://10.react.pages.academy/six-cities';
 const REQUEST_TIMEOUTE = 5000;
 
