@@ -16,3 +16,5 @@ export const setCity = createAction<string>('city/setCity');
 export const requireAuthorization = createAction<AuthorizationStatus>(
   'user/requireAuthorization'
 );
+
+export const setError = createAction<string | null>('game/setError');

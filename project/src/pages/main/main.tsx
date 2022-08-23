@@ -10,7 +10,7 @@ import CityList from './../../components/city-list/city-list';
 import { CITIES } from './../../const';
 import Email from './../../components/email/email';
 import { useSelector } from 'react-redux';
-import { offers } from '../../mocks/offers';
+// import { offers } from '../../mocks/offers';
 import { setOfferList } from '../../store/action';
 import { useDispatch } from 'react-redux';
 

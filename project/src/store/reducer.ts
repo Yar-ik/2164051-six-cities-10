@@ -7,6 +7,7 @@ type InitialState = {
   city: string;
   offerList: Offer;
   authorizationStatus: AuthorizationStatus;
+  error: string | null;
 };
 
 const initialState: InitialState = {
