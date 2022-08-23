@@ -13,6 +13,8 @@ export const setOfferList = createAction<Offer[]>('city/setOfferList');
 
 export const setCity = createAction<string>('city/setCity');
 
+export const setDataLoadedStatus = createAction<boolean>('data/loadedStatus');
+
 export const requireAuthorization = createAction<AuthorizationStatus>(
   'user/requireAuthorization'
 );

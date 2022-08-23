@@ -1,12 +1,21 @@
-import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
+import axios, {
+  AxiosError,
+  AxiosInstance,
+  AxiosRequestConfig,
+  AxiosResponse,
+} from 'axios';
+import { StatusCodes } from 'http-status-codes';
 import { getToken } from './token';
-
+import { processErrorHandle } from './../components/error-message/process-error-handle';
 
 const StatusCodeMapping: Record<number, boolean> = {
-  [StatusCodes]
-}
+  [StatusCodes.BAD_REQUEST]: true,
+  [StatusCodes.UNAUTHORIZED]: true,
+  [StatusCodes.NOT_FOUND]: true,
+};
 
-
+const shouldDisplayError = (response: AxiosResponse) =>
+  !!StatusCodeMapping[response.status];
 
 const BACKEND_URL = 'https://10.react.pages.academy/six-cities';
 const REQUEST_TIMEOUTE = 5000;
@@ -27,6 +36,17 @@ export const createAPI = (): AxiosInstance => {
 
     return config;
   });
+
+  api.interceptors.response.use(
+    (Response) => Response,
+    (error: AxiosError) => {
+      if (error.response && shouldDisplayError(error.response)) {
+        processErrorHandle(error.response.data.console.error);
+      }
+
+      throw error;
+    }
+  );
 
   return api;
 };

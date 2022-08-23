@@ -2,11 +2,13 @@
 import { AuthorizationStatus } from '../const';
 import { Action, requireAuthorization, setCity, setOfferList } from './action';
 import { Offer } from '../types';
+import OfferList from './../components/offerList';
 
 type InitialState = {
   city: string;
   offerList: Offer;
   authorizationStatus: AuthorizationStatus;
+  isDataLoaded: boolean;
   error: string | null;
 };
 

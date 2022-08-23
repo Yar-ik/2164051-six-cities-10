@@ -24,7 +24,9 @@ export const fetchOfferListAction = createAsyncThunk<
   }
 >('city/setOfferList', async (_arg, { dispatch, extra: api }) => {
   const { data } = await api.get<Offer>(APIRoute.Offer);
+  dispatch(setDataLoadedStatus)(true);
   dispatch(setOfferList(data));
+  dispatch(setDataLoadedStatus)(false);
 });
 
 export const checkAuthAction = createAsyncThunk<
