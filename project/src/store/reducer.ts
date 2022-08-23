@@ -14,7 +14,7 @@ type InitialState = {
 
 const initialState: InitialState = {
   city: 'Paris',
-  offerList: [],
+  OfferList: [],
   authorizationStatus: AuthorizationStatus.Unknown,
 };
 
