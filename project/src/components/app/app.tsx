@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import Page404 from '../../pages/404/404';
@@ -14,6 +15,9 @@ type AppMainProps = {
 };
 
 function App({ favoriteOffers, commentsList }: AppMainProps): JSX.Element {
+
+  const authorizationStatus = useSelector((state: any) => state.authorizationStatus);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -23,8 +27,7 @@ function App({ favoriteOffers, commentsList }: AppMainProps): JSX.Element {
         <Route
           path={AppRoute.Favorites}
           element={
-            <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
-              {/* NoAuth вместо Auth */}
+            <PrivateRoute authorizationStatus={authorizationStatus}>
               <Favorites favoriteOffers={favoriteOffers} />
             </PrivateRoute>
           }
