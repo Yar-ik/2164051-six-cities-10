@@ -5,10 +5,11 @@ import { favoriteOffers } from './mocks/favoriteOffers';
 import { commentsList } from './mocks/commentsList';
 import { Provider } from 'react-redux';
 import { store } from './store/index';
-import { checkAuthAction, fetchOfferListAction } from './store/api-actions';
+import { checkAuthAction, fetchOfferListAction, loginAction } from './store/api-actions';
 import ErrorMessage from './components/error-message/error-message';
 
 store.dispatch(fetchOfferListAction());
+store.dispatch(loginAction({email: 'abc@abc.com', password: '123'}));
 store.dispatch(checkAuthAction());
 
 const root = ReactDOM.createRoot(

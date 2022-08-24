@@ -1,17 +1,15 @@
 import Logo from '../../components/logo/logo';
 
 import { FormEvent, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { loginAction } from '../../store/api-actions';
 import { AuthData } from '../../types/auth-data';
 import { useAppDispatch } from '../../hooks';
 
 function Login(): JSX.Element {
-  const loginRef = useRef<HTMLInputElement | null>(null);
+  const emailRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
 
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   const onSubmit = (authData: AuthData) => {
     dispatch(loginAction(authData));
@@ -20,9 +18,9 @@ function Login(): JSX.Element {
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    if (loginRef.current !== null && passwordRef.current !== null) {
+    if (emailRef.current !== null && passwordRef.current !== null) {
       onSubmit({
-        login: loginRef.current.value,
+        email: emailRef.current.value,
         password: passwordRef.current.value,
       });
     }
@@ -55,7 +53,7 @@ function Login(): JSX.Element {
                 <label className="visually-hidden">E-mail</label>
 
                 <input
-                  ref={loginRef}
+                  ref={emailRef}
                   className="login__input form__input"
                   type="email"
                   name="email"

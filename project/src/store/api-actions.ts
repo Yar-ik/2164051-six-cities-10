@@ -23,10 +23,11 @@ export const fetchOfferListAction = createAsyncThunk<
     extra: AxiosInstance;
   }
 >('city/setOfferList', async (_arg, { dispatch, extra: api }) => {
-  const { data } = await api.get<Offer>(APIRoute.Offer);
-  dispatch(setDataLoadedStatus)(true);
+  const { data } = await api.get<Offer[]>(APIRoute.Hotels);
+
+  // dispatch(setDataLoadedStatus)(true);
   dispatch(setOfferList(data));
-  dispatch(setDataLoadedStatus)(false);
+  // dispatch(setDataLoadedStatus)(false);
 });
 
 export const checkAuthAction = createAsyncThunk<
@@ -56,16 +57,17 @@ export const loginAction = createAsyncThunk<
   }
 >(
   'user/login',
-  async ({ login: email, password }, { dispatch, extra: api }) => {
+  async ({ email, password }, { dispatch, extra: api }) => {
     const {
       data: { token },
     } = await api.post<UserData>(APIRoute.Login, { email, password });
+
     saveToken(token);
     dispatch(requireAuthorization(AuthorizationStatus.Auth));
   }
 );
 
-export const logouAction = createAsyncThunk<
+export const logoutAction = createAsyncThunk<
   void,
   undefined,
   {

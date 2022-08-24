@@ -6,7 +6,7 @@ import OfferList from './../components/offerList';
 
 type InitialState = {
   city: string;
-  offerList: Offer;
+  offerList: Offer[];
   authorizationStatus: AuthorizationStatus;
   isDataLoaded: boolean;
   error: string | null;
@@ -16,6 +16,8 @@ const initialState: InitialState = {
   city: 'Paris',
   offerList: [],
   authorizationStatus: AuthorizationStatus.Unknown,
+  isDataLoaded: false,
+  error: null,
 };
 
 const sixCitiesReducer = (state = initialState, action: Action) => {
@@ -35,7 +37,7 @@ const sixCitiesReducer = (state = initialState, action: Action) => {
     case requireAuthorization.toString():
       return {
         ...state,
-        user: action.payload,
+        authorizationStatus: action.payload,
       };
     default:
       return state;
