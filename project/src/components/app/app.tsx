@@ -7,6 +7,7 @@ import Login from '../../pages/login/login';
 import Main from '../../pages/main/main';
 import Room from '../../pages/room/room';
 import { CommentsList, FavoriteOffer } from '../../types';
+// import LoadingScreen from '../loading-screen/loading-screen';
 import PrivateRoute from '../private-route/private-route';
 
 type AppMainProps = {
@@ -15,8 +16,13 @@ type AppMainProps = {
 };
 
 function App({ favoriteOffers, commentsList }: AppMainProps): JSX.Element {
+  const { authorizationStatus, isDataLoaded } = useSelector(
+    (state: any) => state.authorizationStatus
+  );
 
-  const authorizationStatus = useSelector((state: any) => state.authorizationStatus);
+  // if (isDataLoaded(authorizationStatus) || isDataLoaded) {
+  //   return <LoadingScreen />;
+  // }
 
   return (
     <BrowserRouter>

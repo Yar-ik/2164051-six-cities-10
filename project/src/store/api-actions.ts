@@ -3,7 +3,12 @@ import { AppDispatch } from '../types/state';
 import { State } from '../types/state';
 import { AxiosInstance } from 'axios';
 import { Offer } from '../types';
-import { requireAuthorization, setOfferList, setError } from './action';
+import {
+  requireAuthorization,
+  setOfferList,
+  setError,
+  setDataLoadedStatus,
+} from './action';
 import { APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../const';
 import { dropToken, saveToken } from '../services/token';
 import { UserData } from '../types/user-data';
@@ -27,7 +32,7 @@ export const fetchOfferListAction = createAsyncThunk<
 
   // dispatch(setDataLoadedStatus)(true);
   dispatch(setOfferList(data));
-  // dispatch(setDataLoadedStatus)(false);
+  dispatch(setDataLoadedStatus)(false);
 });
 
 export const checkAuthAction = createAsyncThunk<
@@ -55,17 +60,14 @@ export const loginAction = createAsyncThunk<
     state: State;
     extra: AxiosInstance;
   }
->(
-  'user/login',
-  async ({ email, password }, { dispatch, extra: api }) => {
-    const {
-      data: { token },
-    } = await api.post<UserData>(APIRoute.Login, { email, password });
+>('user/login', async ({ email, password }, { dispatch, extra: api }) => {
+  const {
+    data: { token },
+  } = await api.post<UserData>(APIRoute.Login, { email, password });
 
-    saveToken(token);
-    dispatch(requireAuthorization(AuthorizationStatus.Auth));
-  }
-);
+  saveToken(token);
+  dispatch(requireAuthorization(AuthorizationStatus.Auth));
+});
 
 export const logoutAction = createAsyncThunk<
   void,
