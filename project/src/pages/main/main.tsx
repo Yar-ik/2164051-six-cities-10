@@ -44,7 +44,7 @@ function Main(): JSX.Element {
     const list = getOffers();
     dispatch(setOfferList(list));
   }, [currentCity, dispatch]);
-
+  // console.log(offers);
   return (
     <>
       <header className="header">

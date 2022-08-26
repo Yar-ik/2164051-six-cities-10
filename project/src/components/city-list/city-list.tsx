@@ -11,13 +11,14 @@ function CityList({ cities }: Props) {
 
   // (Получать текущее состояние) Возвращает текущее состояние (текущий город из стора)
   const currentCity = useSelector((state: any) => state.city);
-  // eslint-disable-next-line no-console
-  console.log(currentCity);
+
   // Функция обработчик(клик по ссылке)
   const handleClick = (e: React.MouseEvent<HTMLElement>, city: string) => {
+    // Отображает выбранный пункт города
     // eslint-disable-next-line no-console
-    // console.log(city);
-
+    console.log(city);
+    // eslint-disable-next-line no-console
+    console.log(currentCity);
     e.preventDefault();
 
     // отправляю выбранные город через dispatch в store (обновляю города в сторе)

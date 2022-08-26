@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import browserHistory from '../../browser-history';
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { AppRoute } from '../../const';
 import Page404 from '../../pages/404/404';
 import Favorites from '../../pages/favorites/favorites';
 import Login from '../../pages/login/login';
@@ -9,8 +9,9 @@ import Main from '../../pages/main/main';
 import Room from '../../pages/room/room';
 import { CommentsList, FavoriteOffer } from '../../types';
 import HistoryRouter from '../history-route/history-route';
-// import LoadingScreen from '../loading-screen/loading-screen';
+import LoadingScreen from '../loading-screen/loading-screen';
 import PrivateRoute from '../private-route/private-route';
+import { isCheckedAuth } from './../../store/api-actions';
 
 type AppMainProps = {
   favoriteOffers: FavoriteOffer[];
@@ -22,9 +23,9 @@ function App({ favoriteOffers, commentsList }: AppMainProps): JSX.Element {
     (state: any) => state.authorizationStatus
   );
 
-  // if (isDataLoaded(authorizationStatus) || isDataLoaded) {
-  //   return <LoadingScreen />;
-  // }
+  if (isCheckedAuth(authorizationStatus) || isDataLoaded) {
+    return <LoadingScreen />;
+  }
 
   return (
     <HistoryRouter history={browserHistory}>

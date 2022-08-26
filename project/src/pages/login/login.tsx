@@ -1,5 +1,4 @@
 import Logo from '../../components/logo/logo';
-
 import { FormEvent, useRef } from 'react';
 import { loginAction } from '../../store/api-actions';
 import { AuthData } from '../../types/auth-data';

@@ -6,24 +6,13 @@ import { Offer } from '../types';
 import {
   requireAuthorization,
   setOfferList,
-  setError,
   setDataLoadedStatus,
   redirectToRoute,
 } from './action';
-import {
-  APIRoute,
-  AppRoute,
-  AuthorizationStatus,
-  TIMEOUT_SHOW_ERROR,
-} from '../const';
+import { APIRoute, AppRoute, AuthorizationStatus } from '../const';
 import { dropToken, saveToken } from '../services/token';
 import { UserData } from '../types/user-data';
 import { AuthData } from '../types/auth-data';
-import { store } from './index';
-
-export const clearErrorAction = createAsyncThunk('game/clearError', () => {
-  setTimeout(() => store.dispatch(setError(null)), TIMEOUT_SHOW_ERROR);
-});
 
 export const fetchOfferListAction = createAsyncThunk<
   void,
@@ -36,9 +25,9 @@ export const fetchOfferListAction = createAsyncThunk<
 >('city/setOfferList', async (_arg, { dispatch, extra: api }) => {
   const { data } = await api.get<Offer[]>(APIRoute.Hotels);
 
-  // dispatch(setDataLoadedStatus)(true);
+  dispatch(setDataLoadedStatus(true));
   dispatch(setOfferList(data));
-  dispatch(setDataLoadedStatus)(false);
+  dispatch(setDataLoadedStatus(false));
 });
 
 export const checkAuthAction = createAsyncThunk<
@@ -73,6 +62,7 @@ export const loginAction = createAsyncThunk<
 
   saveToken(token);
   dispatch(requireAuthorization(AuthorizationStatus.Auth));
+  dispatch(redirectToRoute(AppRoute.Main));
 });
 
 export const logoutAction = createAsyncThunk<
@@ -84,8 +74,12 @@ export const logoutAction = createAsyncThunk<
     extra: AxiosInstance;
   }
 >('user/logout', async (_arg, { dispatch, extra: api }) => {
-  await api.delete(APIRoute.Logout);
+  await api.delete(APIRoute.Login);
   dropToken();
   dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
   dispatch(redirectToRoute(AppRoute.Main));
 });
+
+export const isCheckedAuth = (
+  authorizationStatus: AuthorizationStatus
+): boolean => authorizationStatus === AuthorizationStatus.Unknown;

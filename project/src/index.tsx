@@ -10,7 +10,7 @@ import {
   fetchOfferListAction,
   loginAction,
 } from './store/api-actions';
-import ErrorMessage from './components/error-message/error-message';
+import { ToastContainer } from 'react-toastify';
 
 store.dispatch(fetchOfferListAction());
 store.dispatch(loginAction({ email: 'abc@abc.com', password: '123' }));
@@ -22,7 +22,7 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <Provider store={store}>
-    <ErrorMessage />
+    <ToastContainer />
     <App favoriteOffers={favoriteOffers} commentsList={commentsList} />
   </Provider>
 );

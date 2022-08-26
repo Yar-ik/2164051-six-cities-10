@@ -1,22 +1,18 @@
-// import { createSlice, configureStore } from '@reduxjs/toolkit';
 import { AuthorizationStatus } from '../const';
 import {
   Action,
   requireAuthorization,
   setCity,
-  // setDataLoadedStatus,
-  // setError,
+  setDataLoadedStatus,
   setOfferList,
 } from './action';
 import { Offer } from '../types';
-// import OfferList from './../components/offerList';
 
 type InitialState = {
   city: string;
   offerList: Offer[];
   authorizationStatus: AuthorizationStatus;
   isDataLoaded: boolean;
-  error: string | null;
 };
 
 const initialState: InitialState = {
@@ -24,7 +20,6 @@ const initialState: InitialState = {
   offerList: [],
   authorizationStatus: AuthorizationStatus.Unknown,
   isDataLoaded: false,
-  error: null,
 };
 
 const sixCitiesReducer = (state = initialState, action: Action) => {
@@ -41,23 +36,17 @@ const sixCitiesReducer = (state = initialState, action: Action) => {
         city: action.payload,
       };
 
-    // case setDataLoadedStatus.toString():
-    //   return {
-    //     ...state,
-    //     isDataLoaded: action.payload,
-    //   };
+    case setDataLoadedStatus.toString():
+      return {
+        ...state,
+        isDataLoaded: action.payload,
+      };
 
     case requireAuthorization.toString():
       return {
         ...state,
         authorizationStatus: action.payload,
       };
-
-    // case setError.toString():
-    //   return {
-    //     ...state,
-    //     error: action.payload,
-    //   };
 
     default:
       return state;
