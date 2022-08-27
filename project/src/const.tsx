@@ -6,6 +6,13 @@ export enum AppRoute {
   Page404 = '*',
 }
 
+export enum APIRoute {
+  Hotels = '/hotels',
+  Hotel = '/hotel',
+  Login = '/login',
+  Logout = '/logout',
+}
+
 export enum AuthorizationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',

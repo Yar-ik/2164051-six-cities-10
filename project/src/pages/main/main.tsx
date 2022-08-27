@@ -43,8 +43,8 @@ function Main(): JSX.Element {
   useEffect(() => {
     const list = getOffers();
     dispatch(setOfferList(list));
-  }, [currentCity]);
-
+  }, [currentCity, dispatch]);
+  // console.log(offers);
   return (
     <>
       <header className="header">
