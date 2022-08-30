@@ -10,6 +10,7 @@ import Room from '../../pages/room/room';
 import { CommentsList, FavoriteOffer } from '../../types';
 import HistoryRouter from '../history-route/history-route';
 import LoadingScreen from '../loading-screen/loading-screen';
+import Logo from '../logo/logo';
 import PrivateRoute from '../private-route/private-route';
 import { isCheckedAuth } from './../../store/api-actions';
 
@@ -19,14 +20,6 @@ type AppMainProps = {
 };
 
 function App({ favoriteOffers, commentsList }: AppMainProps): JSX.Element {
-  const { authorizationStatus, isDataLoaded } = useSelector(
-    (state: any) => state.authorizationStatus
-  );
-
-  if (isCheckedAuth(authorizationStatus) || isDataLoaded) {
-    return <LoadingScreen />;
-  }
-
   return (
     <HistoryRouter history={browserHistory}>
       <Routes>
@@ -36,7 +29,7 @@ function App({ favoriteOffers, commentsList }: AppMainProps): JSX.Element {
         <Route
           path={AppRoute.Favorites}
           element={
-            <PrivateRoute authorizationStatus={authorizationStatus}>
+            <PrivateRoute>
               <Favorites favoriteOffers={favoriteOffers} />
             </PrivateRoute>
           }
