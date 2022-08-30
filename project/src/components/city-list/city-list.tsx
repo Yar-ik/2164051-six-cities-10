@@ -14,6 +14,7 @@ function CityList({ cities, city, onCityChange }: Props) {
       <section className="locations container">
         <ul className="locations__list tabs__list">
           {cities.map((cityItem, index) => (
+            // eslint-disable-next-line react/no-array-index-key
             <li className="locations__item" key={`${index}-${city}`}>
               <a
                 className={`locations__item-link tabs__item ${

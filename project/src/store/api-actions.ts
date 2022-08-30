@@ -6,7 +6,7 @@ import { Offer } from '../types';
 import {
   requireAuthorization,
   setOfferList,
-  setDataLoadedStatus,
+  // setDataLoadedStatus,
   redirectToRoute,
 } from './action';
 import { APIRoute, AppRoute, AuthorizationStatus } from '../const';
