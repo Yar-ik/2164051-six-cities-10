@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import DropDown from '../../components/drop-down-form/drop-down-form';
+import DropDownForm from '../../components/drop-down-form/drop-down-form';
 import Logo from '../../components/logo/logo';
 import OfferList from '../../components/offerList';
 import { AppRoute } from '../../const';
@@ -10,15 +10,18 @@ import CityList from './../../components/city-list/city-list';
 import { CITIES } from './../../const';
 import Email from './../../components/email/email';
 import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
-import { logoutAction } from '../../store/api-actions';
+// import { useDispatch } from 'react-redux';
+// import { logoutAction } from '../../store/api-actions';
 
 function Main(): JSX.Element {
   const offerList: Offer[] = useSelector((state: any) => state.offerList);
 
   const [city, setCity] = useState(CITIES[0]);
 
-  const offers = useMemo(() => offerList.filter((offer) => offer.city.name === city), [offerList, city]);
+  const offers = useMemo(
+    () => offerList.filter((offer) => offer.city.name === city),
+    [offerList, city]
+  );
 
   const [selectedPoint, setSelectedPoint] = useState<Point | undefined>(
     undefined
@@ -38,9 +41,9 @@ function Main(): JSX.Element {
   const currentCity = useSelector((state: any) => state.city);
   const countOffers = offerList.length;
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  dispatch(logoutAction());
+  // dispatch(logoutAction());
 
   return (
     <>
@@ -79,7 +82,7 @@ function Main(): JSX.Element {
                 {countOffers} places to stay in {currentCity}
               </b>
 
-              <DropDown />
+              <DropDownForm />
 
               <OfferList offers={offers} onListItemHover={onListItemHover} />
             </section>
