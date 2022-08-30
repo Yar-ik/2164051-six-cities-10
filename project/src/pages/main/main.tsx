@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import DropDown from '../../components/drop-down-form/drop-down-form';
 import Logo from '../../components/logo/logo';
@@ -10,15 +10,15 @@ import CityList from './../../components/city-list/city-list';
 import { CITIES } from './../../const';
 import Email from './../../components/email/email';
 import { useSelector } from 'react-redux';
-import { offers } from '../../mocks/offers';
-import { setOfferList } from '../../store/action';
 import { useDispatch } from 'react-redux';
-
-// Функция возвращает массив предложений
-const getOffers = () => offers;
+import { logoutAction } from '../../store/api-actions';
 
 function Main(): JSX.Element {
   const offerList: Offer[] = useSelector((state: any) => state.offerList);
+
+  const [city, setCity] = useState(CITIES[0]);
+
+  const offers = useMemo(() => offerList.filter((offer) => offer.city.name === city), [offerList, city]);
 
   const [selectedPoint, setSelectedPoint] = useState<Point | undefined>(
     undefined
@@ -40,11 +40,8 @@ function Main(): JSX.Element {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const list = getOffers();
-    dispatch(setOfferList(list));
-  }, [currentCity, dispatch]);
-  // console.log(offers);
+  dispatch(logoutAction());
+
   return (
     <>
       <header className="header">
@@ -72,7 +69,8 @@ function Main(): JSX.Element {
 
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
-        <CityList cities={CITIES} />
+        <CityList cities={CITIES} city={city} onCityChange={setCity} />
+
         <div className="cities">
           <div className="cities__places-container container">
             <section className="cities__places places">
@@ -83,7 +81,7 @@ function Main(): JSX.Element {
 
               <DropDown />
 
-              <OfferList offers={offerList} onListItemHover={onListItemHover} />
+              <OfferList offers={offers} onListItemHover={onListItemHover} />
             </section>
             <div className="cities__right-section">
               <Map points={points} selectedPoint={selectedPoint} />
