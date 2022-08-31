@@ -54,13 +54,18 @@ export const loginAction = createAsyncThunk<
     extra: AxiosInstance;
   }
 >('user/login', async ({ email, password }, { dispatch, extra: api }) => {
-  const {
-    data: { token },
-  } = await api.post<UserData>(APIRoute.Login, { email, password });
+  try {
+    const {
+      data: { token },
+    } = await api.post<UserData>(APIRoute.Login, { email, password });
 
-  saveToken(token);
-  dispatch(requireAuthorization(AuthorizationStatus.Auth));
-  dispatch(redirectToRoute(AppRoute.Main));
+    saveToken(token);
+    dispatch(requireAuthorization(AuthorizationStatus.Auth));
+    dispatch(redirectToRoute(AppRoute.Main));
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error(error);
+  }
 });
 
 export const logoutAction = createAsyncThunk<
@@ -72,10 +77,10 @@ export const logoutAction = createAsyncThunk<
     extra: AxiosInstance;
   }
 >('user/logout', async (_arg, { dispatch, extra: api }) => {
-  await api.delete(APIRoute.Login);
+  await api.delete(APIRoute.Logout);
   dropToken();
   dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
-  dispatch(redirectToRoute(AppRoute.Main));
+  dispatch(redirectToRoute(AppRoute.Login));
 });
 
 export const isCheckedAuth = (

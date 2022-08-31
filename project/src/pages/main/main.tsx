@@ -1,17 +1,14 @@
 import { useState, useMemo } from 'react';
-import { Link } from 'react-router-dom';
 import DropDownForm from '../../components/drop-down-form/drop-down-form';
-import Logo from '../../components/logo/logo';
 import OfferList from '../../components/offerList';
-import { AppRoute } from '../../const';
 import { Offer, Point } from '../../types';
 import Map from './../../components/map/map';
 import CityList from './../../components/city-list/city-list';
 import { CITIES } from './../../const';
-import Email from './../../components/email/email';
 import { useSelector } from 'react-redux';
 // import { useDispatch } from 'react-redux';
 // import { logoutAction } from '../../store/api-actions';
+import Header from './../../components/header/header';
 
 function Main(): JSX.Element {
   const offerList: Offer[] = useSelector((state: any) => state.offerList);
@@ -38,7 +35,7 @@ function Main(): JSX.Element {
     setSelectedPoint(currentPoint);
   };
   // Получаю название городов из стейта(хранилища)
-  const currentCity = useSelector((state: any) => state.city);
+
   const countOffers = offerList.length;
 
   // const dispatch = useDispatch();
@@ -47,29 +44,7 @@ function Main(): JSX.Element {
 
   return (
     <>
-      <header className="header">
-        <div className="container">
-          <div className="header__wrapper">
-            <div className="header__left">
-              <Logo />
-            </div>
-            <nav className="header__nav">
-              <ul className="header__nav-list">
-                <li className="header__nav-item user">
-                  <Email />
-                </li>
-
-                <li className="header__nav-item">
-                  <Link to={AppRoute.Login} className="header__nav-link">
-                    <span className="header__signout">Sign out</span>
-                  </Link>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </header>
-
+      <Header />
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <CityList cities={CITIES} city={city} onCityChange={setCity} />
@@ -79,7 +54,7 @@ function Main(): JSX.Element {
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">
-                {countOffers} places to stay in {currentCity}
+                {countOffers} places to stay in {city}
               </b>
 
               <DropDownForm />
