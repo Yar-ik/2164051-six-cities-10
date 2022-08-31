@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import browserHistory from '../../browser-history';
 import { AppRoute } from '../../const';
@@ -9,9 +9,10 @@ import Main from '../../pages/main/main';
 import Room from '../../pages/room/room';
 import { CommentsList, FavoriteOffer } from '../../types';
 import HistoryRouter from '../history-route/history-route';
-import LoadingScreen from '../loading-screen/loading-screen';
+// import LoadingScreen from '../loading-screen/loading-screen';
+// import Logo from '../logo/logo';
 import PrivateRoute from '../private-route/private-route';
-import { isCheckedAuth } from './../../store/api-actions';
+// import { isCheckedAuth } from './../../store/api-actions';
 
 type AppMainProps = {
   favoriteOffers: FavoriteOffer[];
@@ -19,14 +20,6 @@ type AppMainProps = {
 };
 
 function App({ favoriteOffers, commentsList }: AppMainProps): JSX.Element {
-  const { authorizationStatus, isDataLoaded } = useSelector(
-    (state: any) => state.authorizationStatus
-  );
-
-  if (isCheckedAuth(authorizationStatus) || isDataLoaded) {
-    return <LoadingScreen />;
-  }
-
   return (
     <HistoryRouter history={browserHistory}>
       <Routes>
@@ -36,7 +29,7 @@ function App({ favoriteOffers, commentsList }: AppMainProps): JSX.Element {
         <Route
           path={AppRoute.Favorites}
           element={
-            <PrivateRoute authorizationStatus={authorizationStatus}>
+            <PrivateRoute>
               <Favorites favoriteOffers={favoriteOffers} />
             </PrivateRoute>
           }
