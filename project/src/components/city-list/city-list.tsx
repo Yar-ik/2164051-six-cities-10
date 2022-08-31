@@ -1,44 +1,29 @@
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-import { setCity } from '../../store/action';
-
 type Props = {
   cities: string[];
+  city: string;
+  onCityChange: (city: string) => void;
 };
 
-function CityList({ cities }: Props) {
-  const dispatch = useDispatch();
-
-  // (Получать текущее состояние) Возвращает текущее состояние (текущий город из стора)
-  const currentCity = useSelector((state: any) => state.city);
-
-  // Функция обработчик(клик по ссылке)
-  const handleClick = (e: React.MouseEvent<HTMLElement>, city: string) => {
-    // Отображает выбранный пункт города
-    // eslint-disable-next-line no-console
-    console.log(city);
-    // eslint-disable-next-line no-console
-    console.log(currentCity);
-    e.preventDefault();
-
-    // отправляю выбранные город через dispatch в store (обновляю города в сторе)
-    dispatch(setCity(city));
+function CityList({ cities, city, onCityChange }: Props) {
+  const handleClick = (v: string) => {
+    onCityChange(v);
   };
 
   return (
     <div className="tabs">
       <section className="locations container">
         <ul className="locations__list tabs__list">
-          {cities.map((city) => (
-            <li className="locations__item" key={city}>
+          {cities.map((cityItem, index) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <li className="locations__item" key={`${index}-${city}`}>
               <a
                 className={`locations__item-link tabs__item ${
-                  currentCity === city ? 'tabs__item--active' : ''
+                  cityItem === city ? 'tabs__item--active' : ''
                 }`}
                 href="#todo"
-                onClick={(e) => handleClick(e, city)}
+                onClick={() => handleClick(cityItem)}
               >
-                <span>{city}</span>
+                <span>{cityItem}</span>
               </a>
             </li>
           ))}
