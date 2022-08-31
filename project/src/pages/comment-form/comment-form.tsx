@@ -1,6 +1,14 @@
 import { useState } from 'react';
 function CommentForm(): JSX.Element {
   const [value, setValue] = useState('Тестовый текст');
+
+  const addPost = (e: { preventDefault: () => void }) => {
+    // eslint-disable-next-line no-alert
+    alert(value);
+    e.preventDefault();
+    setValue('');
+  };
+
   return (
     <form className="reviews__form form" action="#" method="post">
       <label className="reviews__label form__label" htmlFor="review">
@@ -109,10 +117,7 @@ function CommentForm(): JSX.Element {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          onClick={(e) => {
-            e.preventDefault();
-            setValue('');
-          }}
+          onClick={addPost}
           // disabled
         >
           Submit
