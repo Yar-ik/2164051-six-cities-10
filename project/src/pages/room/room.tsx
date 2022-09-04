@@ -90,6 +90,7 @@ function Room(): JSX.Element {
                 <div className="property__stars rating__stars">
                   <span
                     style={{ width: calcRatingPercent(offer.rating) }}
+                    // eslint-disable-next-line react/jsx-closing-tag-location
                   ></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
