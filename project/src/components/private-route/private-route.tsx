@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
+import { State } from '../../types/state';
 
 type PrivateRouteProps = {
   children: JSX.Element;
@@ -9,7 +10,7 @@ type PrivateRouteProps = {
 function PrivateRoute(props: PrivateRouteProps): JSX.Element {
   const { children } = props;
 
-  const { authorizationStatus } = useSelector((state: any) => state);
+  const { authorizationStatus } = useSelector((state: State) => state);
 
   return authorizationStatus === AuthorizationStatus.Auth ? (
     children

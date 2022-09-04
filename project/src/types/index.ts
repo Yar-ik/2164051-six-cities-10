@@ -68,7 +68,7 @@ export type FavoriteOffer = {
   type: string;
 };
 
-export type CommentsList = {
+export type Comment = {
   comment: string;
   date: string;
   id: number;

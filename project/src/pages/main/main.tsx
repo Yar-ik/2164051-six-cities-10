@@ -9,9 +9,10 @@ import { useSelector } from 'react-redux';
 // import { useDispatch } from 'react-redux';
 // import { logoutAction } from '../../store/api-actions';
 import Header from './../../components/header/header';
+import { State } from '../../types/state';
 
 function Main(): JSX.Element {
-  const offerList: Offer[] = useSelector((state: any) => state.offerList);
+  const offerList: Offer[] = useSelector((state: State) => state.offerList);
 
   const [city, setCity] = useState(CITIES[0]);
 
@@ -36,11 +37,7 @@ function Main(): JSX.Element {
   };
   // Получаю название городов из стейта(хранилища)
 
-  const countOffers = offerList.length;
-
-  // const dispatch = useDispatch();
-
-  // dispatch(logoutAction());
+  const countOffers = offers.length;
 
   return (
     <>

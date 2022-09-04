@@ -1,5 +1,6 @@
 import { Offer } from '../../types';
 import { useNavigate } from 'react-router-dom';
+import { calcRatingPercent } from './../../utils/utils';
 
 type Props = {
   offer: Offer;
@@ -39,7 +40,7 @@ function OfferCard({ offer }: Props): JSX.Element {
           </div>
           <div className="place-card__rating rating">
             <div className="place-card__stars rating__stars">
-              <span style={{ width: '80%' }}></span>
+              <span style={{ width: calcRatingPercent(offer.rating) }}></span>
               <span className="visually-hidden">{offer.rating}</span>
             </div>
           </div>

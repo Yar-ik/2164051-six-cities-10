@@ -1,12 +1,27 @@
 import { useState } from 'react';
-function CommentForm(): JSX.Element {
-  const [value, setValue] = useState('Тестовый текст');
+import { api } from './../../store/index';
 
-  const addPost = (e: { preventDefault: () => void }) => {
-    // eslint-disable-next-line no-alert
-    alert(value);
+type Props = {
+  fetchComments: () => void;
+  offerId: string | undefined;
+};
+
+function CommentForm({ fetchComments, offerId }: Props): JSX.Element {
+  const [value, setValue] = useState('');
+  const [rating, setRating] = useState(0);
+
+  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    setValue('');
+
+    api.post(`/comments/${offerId}`, { comment: value, rating }).then((res) => {
+      fetchComments();
+      setValue('');
+      setRating(0);
+    });
+  };
+
+  const handleChangeRadio = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setRating(Number(e.target.value));
   };
 
   return (
@@ -21,6 +36,8 @@ function CommentForm(): JSX.Element {
           value="5"
           id="5-stars"
           type="radio"
+          checked={rating === 5}
+          onChange={handleChangeRadio}
         />
         <label
           htmlFor="5-stars"
@@ -38,6 +55,8 @@ function CommentForm(): JSX.Element {
           value="4"
           id="4-stars"
           type="radio"
+          checked={rating === 4}
+          onChange={handleChangeRadio}
         />
         <label
           htmlFor="4-stars"
@@ -55,6 +74,8 @@ function CommentForm(): JSX.Element {
           value="3"
           id="3-stars"
           type="radio"
+          checked={rating === 3}
+          onChange={handleChangeRadio}
         />
         <label
           htmlFor="3-stars"
@@ -72,6 +93,8 @@ function CommentForm(): JSX.Element {
           value="2"
           id="2-stars"
           type="radio"
+          checked={rating === 2}
+          onChange={handleChangeRadio}
         />
         <label
           htmlFor="2-stars"
@@ -89,6 +112,8 @@ function CommentForm(): JSX.Element {
           value="1"
           id="1-star"
           type="radio"
+          checked={rating === 1}
+          onChange={handleChangeRadio}
         />
         <label
           htmlFor="1-star"
@@ -100,6 +125,7 @@ function CommentForm(): JSX.Element {
           </svg>
         </label>
       </div>
+
       <textarea
         className="reviews__textarea form__textarea"
         value={value}
@@ -117,7 +143,7 @@ function CommentForm(): JSX.Element {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          onClick={addPost}
+          onClick={handleSubmit}
           // disabled
         >
           Submit
