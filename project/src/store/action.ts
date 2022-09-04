@@ -6,7 +6,7 @@ type ActionName = 'city/setOfferList' | 'city/setCity';
 
 export interface Action {
   type: ActionName;
-  payload: any;
+  payload: unknown;
 }
 
 export const setOfferList = createAction<Offer[]>('city/setOfferList');

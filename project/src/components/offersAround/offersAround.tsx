@@ -67,6 +67,7 @@ function OffersAround({ list }: Props) {
                   <div className="place-card__stars rating__stars">
                     <span
                       style={{ width: calcRatingPercent(item.rating) }}
+                      // eslint-disable-next-line react/jsx-closing-tag-location
                     ></span>
                     <span className="visually-hidden">Rating</span>
                   </div>
