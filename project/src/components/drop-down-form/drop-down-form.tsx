@@ -18,11 +18,10 @@ function DropDownForm(): JSX.Element {
       </span>
 
       <ul
-        className={
-          menuActive
-            ? 'places__options places__options--custom places__options--opened'
-            : 'places__options places__options--custom'
+        className={`places__options places__options--custom ${
+          menuActive ? ' places__options--opened' : ''
         }
+       `}
       >
         <li className="places__option places__option--active" tabIndex={0}>
           Popular

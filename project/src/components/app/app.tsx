@@ -1,4 +1,4 @@
-// import { useSelector } from 'react-redux';
+// // import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import browserHistory from '../../browser-history';
 import { AppRoute } from '../../const';
@@ -7,19 +7,19 @@ import Favorites from '../../pages/favorites/favorites';
 import Login from '../../pages/login/login';
 import Main from '../../pages/main/main';
 import Room from '../../pages/room/room';
-import { CommentsList, FavoriteOffer } from '../../types';
+import { FavoriteOffer } from '../../types';
 import HistoryRouter from '../history-route/history-route';
-// import LoadingScreen from '../loading-screen/loading-screen';
+// // import LoadingScreen from '../loading-screen/loading-screen';
+// import Logo from '../logo/logo';
 // import Logo from '../logo/logo';
 import PrivateRoute from '../private-route/private-route';
-// import { isCheckedAuth } from './../../store/api-actions';
+// // import { isCheckedAuth } from './../../store/api-actions';
 
 type AppMainProps = {
   favoriteOffers: FavoriteOffer[];
-  commentsList: CommentsList[];
 };
 
-function App({ favoriteOffers, commentsList }: AppMainProps): JSX.Element {
+function App({ favoriteOffers }: AppMainProps): JSX.Element {
   return (
     <HistoryRouter history={browserHistory}>
       <Routes>
@@ -35,10 +35,7 @@ function App({ favoriteOffers, commentsList }: AppMainProps): JSX.Element {
           }
         />
 
-        <Route
-          path={AppRoute.Room}
-          element={<Room commentsList={commentsList} />}
-        />
+        <Route path={AppRoute.Room} element={<Room />} />
         <Route path={AppRoute.Page404} element={<Page404 />} />
       </Routes>
     </HistoryRouter>
