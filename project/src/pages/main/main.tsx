@@ -1,13 +1,11 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import DropDownForm from '../../components/drop-down-form/drop-down-form';
 import OfferList from '../../components/offerList';
 import { Offer, Point } from '../../types';
 import Map from './../../components/map/map';
 import CityList from './../../components/city-list/city-list';
-import { CITIES } from './../../const';
+import { CITIES, Sort } from './../../const';
 import { useSelector } from 'react-redux';
-// import { useDispatch } from 'react-redux';
-// import { logoutAction } from '../../store/api-actions';
 import Header from './../../components/header/header';
 import { State } from '../../types/state';
 
@@ -15,6 +13,7 @@ function Main(): JSX.Element {
   const offerList: Offer[] = useSelector((state: State) => state.offerList);
 
   const [city, setCity] = useState(CITIES[0]);
+  const [sortBy, setSortBy] = useState(Sort.Popular);
 
   const offers = useMemo(
     () => offerList.filter((offer) => offer.city.name === city),
@@ -35,7 +34,22 @@ function Main(): JSX.Element {
 
     setSelectedPoint(currentPoint);
   };
-  // Получаю название городов из стейта(хранилища)
+
+  useEffect(() => {
+    switch (sortBy) {
+      case Sort.PriceAsc:
+        offers.sort((a, b) => a.price - b.price);
+        break;
+      case Sort.PriceDesc:
+        offers.sort((a, b) => b.price - a.price);
+        break;
+      case Sort.TopRated:
+        offers.sort((a, b) => b.rating - a.rating);
+        break;
+      default:
+        break;
+    }
+  }, [sortBy]);
 
   const countOffers = offers.length;
 
@@ -54,7 +68,7 @@ function Main(): JSX.Element {
                 {countOffers} places to stay in {city}
               </b>
 
-              <DropDownForm />
+              <DropDownForm onSortChange={setSortBy} sortBy={sortBy} />
 
               <OfferList offers={offers} onListItemHover={onListItemHover} />
             </section>

@@ -1,6 +1,12 @@
 import { Offer } from '../../types';
 import { useNavigate } from 'react-router-dom';
 import { calcRatingPercent } from './../../utils/utils';
+import { useAppDispatch } from './../../hooks/index';
+import { setBookmark } from '../../store/api-actions';
+import { fetchOfferListAction } from './../../store/api-actions';
+import { useSelector } from 'react-redux';
+import { State } from '../../types/state';
+import { AppRoute, AuthorizationStatus } from '../../const';
 
 type Props = {
   offer: Offer;
@@ -8,6 +14,18 @@ type Props = {
 
 function OfferCard({ offer }: Props): JSX.Element {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const { authorizationStatus } = useSelector((state: State) => state);
+
+  const changeBookmark = () => {
+    if (authorizationStatus === AuthorizationStatus.NoAuth) {
+      navigate(AppRoute.Login);
+      return;
+    }
+    dispatch(setBookmark({ hotelId: offer.id, isFavorite: offer.isFavorite }));
+    dispatch(fetchOfferListAction());
+  };
+
   return (
     <div>
       <article className="cities__card place-card">
@@ -29,8 +47,11 @@ function OfferCard({ offer }: Props): JSX.Element {
               <span className="place-card__price-text">&#47;&nbsp;night</span>
             </div>
             <button
-              className="place-card__bookmark-button place-card__bookmark-button--active button"
+              className={`place-card__bookmark-button button ${
+                offer.isFavorite ? 'place-card__bookmark-button--active' : ''
+              }`}
               type="button"
+              onClick={changeBookmark}
             >
               <svg className="place-card__bookmark-icon" width="18" height="19">
                 <use xlinkHref="#icon-bookmark"></use>

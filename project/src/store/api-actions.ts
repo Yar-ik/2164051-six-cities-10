@@ -86,3 +86,24 @@ export const logoutAction = createAsyncThunk<
 export const isCheckedAuth = (
   authorizationStatus: AuthorizationStatus
 ): boolean => authorizationStatus === AuthorizationStatus.Unknown;
+
+export const setBookmark = createAsyncThunk<
+  void,
+  { hotelId: number; isFavorite: boolean },
+  {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+  }
+>(
+  'offer/bookmark',
+  async ({ hotelId, isFavorite }, { dispatch, extra: api }) => {
+    const status = isFavorite ? 0 : 1;
+    try {
+      await api.post(`/favorite/${hotelId}/${status}`);
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
+  }
+);

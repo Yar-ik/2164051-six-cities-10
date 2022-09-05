@@ -10,8 +10,7 @@ function OfferList({ offers, onListItemHover }: Props) {
   const handleListItemHover = (title: string) => {
     onListItemHover(title);
   };
-  // console.log((offers.length = 6));
-  // offers.length = 6;
+
   return (
     <div className="cities__places-list places__list tabs__content">
       {offers.map((offer) => (

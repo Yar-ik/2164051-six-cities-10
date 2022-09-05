@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
-import { favoriteOffers } from './mocks/favoriteOffers';
 import { Provider } from 'react-redux';
 import { store } from './store/index';
 import {
@@ -22,6 +21,6 @@ const root = ReactDOM.createRoot(
 root.render(
   <Provider store={store}>
     <ToastContainer />
-    <App favoriteOffers={favoriteOffers} />
+    <App />
   </Provider>
 );

@@ -19,6 +19,13 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
+export enum Sort {
+  Popular = 'Popular',
+  PriceAsc = 'Price: low to high',
+  PriceDesc = 'Price: high to low',
+  TopRated = 'Top rated first',
+}
+
 export const CITIES = [
   'Paris',
   'Cologne',

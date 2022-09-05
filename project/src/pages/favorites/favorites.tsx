@@ -1,15 +1,33 @@
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../../hooks';
+import { setBookmark } from '../../store/api-actions';
+import { Offer } from '../../types';
 
-import { FavoriteOffer } from '../../types';
 import Header from './../../components/header/header';
+import { api } from './../../store/index';
 
-type Props = {
-  favoriteOffers: FavoriteOffer[];
-};
+function Favorites(): JSX.Element {
+  const [favorites, setFavorites] = useState<Offer[]>([]);
+  const dispatch = useAppDispatch();
 
-function Favorites({ favoriteOffers }: Props): JSX.Element {
+  const fetchFavorites = () => {
+    api.get('/favorite').then((res) => {
+      setFavorites(res.data);
+    });
+  };
+
+  useEffect(() => {
+    fetchFavorites();
+  }, []);
+
+  const handleDeleteBookmark = (offer: Offer) => {
+    dispatch(setBookmark({ hotelId: offer.id, isFavorite: offer.isFavorite }));
+    fetchFavorites();
+  };
+
   const navigate = useNavigate();
-  const favoritItems = favoriteOffers.map((offer) => (
+  const favoritItems = favorites.map((offer) => (
     <article key={offer.id}>
       <div>
         <div className="favorites__image-wrapper place-card__image-wrapper">
@@ -32,6 +50,7 @@ function Favorites({ favoriteOffers }: Props): JSX.Element {
             <button
               className="place-card__bookmark-button place-card__bookmark-button--active button"
               type="button"
+              onClick={() => handleDeleteBookmark(offer)}
             >
               <svg className="place-card__bookmark-icon" width="18" height="19">
                 <use xlinkHref="#icon-bookmark"></use>
@@ -80,7 +99,9 @@ function Favorites({ favoriteOffers }: Props): JSX.Element {
                   </div>
                 </div>
 
-                <div className="favorites__places">{favoritItems}</div>
+                <div className="favorites__places">
+                  {favorites.length ? favoritItems : 'Nothing yet saved'}
+                </div>
               </li>
 
               <li className="favorites__locations-items">

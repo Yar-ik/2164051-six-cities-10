@@ -11,6 +11,8 @@ import { AuthorizationStatus } from '../../const';
 import OffersAround from '../../components/offersAround/offersAround';
 import { calcRatingPercent, upFirstLetter } from './../../utils/utils';
 import CommentList from '../../components/commentList/commentList';
+import { setBookmark } from '../../store/api-actions';
+import { useAppDispatch } from './../../hooks/index';
 
 function Room(): JSX.Element {
   const [offer, setOffer] = useState<Offer>({} as Offer);
@@ -24,7 +26,7 @@ function Room(): JSX.Element {
     });
   };
 
-  useEffect(() => {
+  const fetchOffer = () => {
     api
       .get(`/hotels/${id}`)
       .then((res) => {
@@ -34,12 +36,23 @@ function Room(): JSX.Element {
         // eslint-disable-next-line no-console
         console.log(err);
       });
+  };
+
+  useEffect(() => {
+    fetchOffer();
 
     api.get(`/hotels/${id}/nearby`).then((res) => {
       setOffersAround(res.data);
     });
     fetchComments();
   }, [id]);
+
+  const dispatch = useAppDispatch();
+  const changeBookmark = () => {
+    dispatch(setBookmark({ hotelId: offer.id, isFavorite: offer.isFavorite }));
+
+    fetchOffer();
+  };
 
   const authStatus = useSelector((state: State) => state.authorizationStatus);
   const images = offer.images?.slice(0, 6);
@@ -73,8 +86,11 @@ function Room(): JSX.Element {
               <div className="property__name-wrapper">
                 <h1 className="property__name">{offer.title}</h1>
                 <button
-                  className="property__bookmark-button button"
+                  className={`property__bookmark-button button ${
+                    offer.isFavorite ? 'property__bookmark-button--active' : ''
+                  }`}
                   type="button"
+                  onClick={changeBookmark}
                 >
                   <svg
                     className="property__bookmark-icon"

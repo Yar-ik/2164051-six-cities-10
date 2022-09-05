@@ -9,15 +9,23 @@ type Props = {
 function CommentForm({ fetchComments, offerId }: Props): JSX.Element {
   const [value, setValue] = useState('');
   const [rating, setRating] = useState(0);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
-    api.post(`/comments/${offerId}`, { comment: value, rating }).then((res) => {
-      fetchComments();
-      setValue('');
-      setRating(0);
-    });
+    setIsSubmitting(true);
+
+    api
+      .post(`/comments/${offerId}`, { comment: value, rating })
+      .then((res) => {
+        fetchComments();
+        setValue('');
+        setRating(0);
+      })
+      .finally(() => {
+        setIsSubmitting(false);
+      });
   };
 
   const handleChangeRadio = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,6 +46,7 @@ function CommentForm({ fetchComments, offerId }: Props): JSX.Element {
           type="radio"
           checked={rating === 5}
           onChange={handleChangeRadio}
+          disabled={isSubmitting}
         />
         <label
           htmlFor="5-stars"
@@ -57,6 +66,7 @@ function CommentForm({ fetchComments, offerId }: Props): JSX.Element {
           type="radio"
           checked={rating === 4}
           onChange={handleChangeRadio}
+          disabled={isSubmitting}
         />
         <label
           htmlFor="4-stars"
@@ -76,6 +86,7 @@ function CommentForm({ fetchComments, offerId }: Props): JSX.Element {
           type="radio"
           checked={rating === 3}
           onChange={handleChangeRadio}
+          disabled={isSubmitting}
         />
         <label
           htmlFor="3-stars"
@@ -95,6 +106,7 @@ function CommentForm({ fetchComments, offerId }: Props): JSX.Element {
           type="radio"
           checked={rating === 2}
           onChange={handleChangeRadio}
+          disabled={isSubmitting}
         />
         <label
           htmlFor="2-stars"
@@ -114,6 +126,7 @@ function CommentForm({ fetchComments, offerId }: Props): JSX.Element {
           type="radio"
           checked={rating === 1}
           onChange={handleChangeRadio}
+          disabled={isSubmitting}
         />
         <label
           htmlFor="1-star"
@@ -133,6 +146,7 @@ function CommentForm({ fetchComments, offerId }: Props): JSX.Element {
         id="review"
         name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
+        disabled={isSubmitting}
       />
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
@@ -144,7 +158,7 @@ function CommentForm({ fetchComments, offerId }: Props): JSX.Element {
           className="reviews__submit form__submit button"
           type="submit"
           onClick={handleSubmit}
-          // disabled
+          disabled={isSubmitting}
         >
           Submit
         </button>

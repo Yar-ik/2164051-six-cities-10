@@ -1,7 +1,18 @@
 import { useState } from 'react';
+import { Sort } from '../../const';
 
-function DropDownForm(): JSX.Element {
+type Props = {
+  sortBy: Sort;
+  onSortChange: (sortBy: Sort) => void;
+};
+
+function DropDownForm({ sortBy, onSortChange }: Props): JSX.Element {
   const [menuActive, setMenuActive] = useState(false);
+
+  const handleClick = (type: Sort) => {
+    onSortChange(type);
+    setMenuActive(false);
+  };
 
   return (
     <form className="places__sorting" action="#" method="get">
@@ -11,7 +22,7 @@ function DropDownForm(): JSX.Element {
         onClick={() => setMenuActive(!menuActive)}
         tabIndex={0}
       >
-        Popular
+        {sortBy}
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>
@@ -23,16 +34,32 @@ function DropDownForm(): JSX.Element {
         }
        `}
       >
-        <li className="places__option places__option--active" tabIndex={0}>
+        <li
+          className="places__option places__option--active"
+          tabIndex={0}
+          onClick={() => handleClick(Sort.Popular)}
+        >
           Popular
         </li>
-        <li className="places__option" tabIndex={0}>
+        <li
+          className="places__option"
+          tabIndex={0}
+          onClick={() => handleClick(Sort.PriceAsc)}
+        >
           Price: low to high
         </li>
-        <li className="places__option" tabIndex={0}>
+        <li
+          className="places__option"
+          tabIndex={0}
+          onClick={() => handleClick(Sort.PriceDesc)}
+        >
           Price: high to low
         </li>
-        <li className="places__option" tabIndex={0}>
+        <li
+          className="places__option"
+          tabIndex={0}
+          onClick={() => handleClick(Sort.TopRated)}
+        >
           Top rated first
         </li>
       </ul>
